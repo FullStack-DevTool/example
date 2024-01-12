@@ -1,8 +1,8 @@
 import express, { Express, Request, Response } from 'express'
-import FsdtLogger from '@fullstack-devtool/sdk'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import bodyParser from "body-parser";
+import { logger } from './logger';
 
 dotenv.config({ path: '../.env' })
 const app: Express = express()
@@ -18,13 +18,8 @@ app.get('/', (req: Request, res: Response) => {
 })
 
 app.post('/form', (req: Request, res: Response) => {
-  logger.info('Form request received')
+  logger.info('Form request received', "Form")
   logger.debug(req.body)
-})
-
-const logger = new FsdtLogger('Server', {
-  connectionType: 'source',
-  port: 1234,
 })
 
 setInterval(() => {
