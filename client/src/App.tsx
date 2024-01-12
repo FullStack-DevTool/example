@@ -14,7 +14,7 @@ function App() {
 
   const handleSubmit = () => {
     logger.info('Submitted ' + input, 'Form')
-    fetch(`http://localhost:${import.meta.env.VITE_API_PORT}/form`, {
+    fetch(`http://localhost:${import.meta.env.VITE_API_PORT || "8000"}/form`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ function App() {
   const handleAPICall = async () => {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
     const data = await response.json()
-    logger.debug(data)
+    logger.debug(data, "API Call")
   }
 
   return (
